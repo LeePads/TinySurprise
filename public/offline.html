@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#b85c6f">
+  <title>Tiny Surprise is offline</title>
+  <style>
+    *{box-sizing:border-box}body{margin:0;min-height:100svh;display:grid;place-items:center;padding:20px;background:radial-gradient(circle at 12% 12%,#ffd8cf,transparent 32rem),radial-gradient(circle at 88% 18%,#ded8ff,transparent 30rem),#fff9f5;color:#3f2a2b;font-family:ui-rounded,system-ui,-apple-system,"Segoe UI",sans-serif}.card{width:min(100%,480px);border:1px solid #ead6cf;border-radius:30px;padding:clamp(24px,7vw,42px);text-align:center;background:#fffdf9dd;box-shadow:0 24px 70px #70453a22;backdrop-filter:blur(14px)}img{width:86px;height:86px;border-radius:22px}small{display:block;margin-top:18px;color:#806e6b}h1{margin:20px 0 10px;font-size:clamp(1.8rem,8vw,2.6rem);line-height:1.05}p{color:#756460;line-height:1.65}button{min-height:48px;margin-top:16px;border:0;border-radius:14px;padding:12px 20px;background:#b85c6f;color:white;font:inherit;font-weight:800;cursor:pointer}@media(prefers-color-scheme:dark){body{background:radial-gradient(circle at 12% 12%,#6d3d48,transparent 30rem),#171214;color:#fff5f0}.card{border-color:#594249;background:#271d20e8}.card p,.card small{color:#d7c2c1}}
+  </style>
+</head>
+<body>
+  <main class="card">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="/icons/tiny-surprise-app-dark-1024.png">
+      <img src="/icons/tiny-surprise-app-light-1024.png" alt="Tiny Surprise">
+    </picture>
+    <h1>Your little moments are still safe.</h1>
+    <p>Tiny Surprise cannot reach the internet right now. Reconnect to browse new pages; anything already saved in your builder stays on this device.</p>
+    <button type="button" onclick="location.reload()">Try again</button>
+    <small>You can keep this page open while your connection returns.</small>
+  </main>
+</body>
+</html>

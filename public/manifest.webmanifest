@@ -1,0 +1,43 @@
+{
+  "name": "Tiny Surprise",
+  "short_name": "Tiny Surprise",
+  "id": "/",
+  "description": "Create a tiny interactive surprise for someone special.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#fff8f3",
+  "theme_color": "#b85c6f",
+  "categories": ["lifestyle", "entertainment", "personalization"],
+  "prefer_related_applications": false,
+  "shortcuts": [
+    {
+      "name": "Create a Surprise",
+      "short_name": "Create",
+      "description": "Start a new Tiny Surprise",
+      "url": "/templates",
+      "icons": [
+        {
+          "src": "/icons/tiny-surprise-icon-flat-1024.png",
+          "sizes": "1024x1024",
+          "type": "image/png"
+        }
+      ]
+    }
+  ],
+  "icons": [
+    {
+      "src": "/icons/tiny-surprise-app-light-1024.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/tiny-surprise-pwa-maskable-light-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

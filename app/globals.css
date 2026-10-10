@@ -1,0 +1,2609 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-error: var(--error);
+  --color-warning: var(--warning);
+  --color-success: var(--success);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  color-scheme: light;
+  --canvas: #f8f2eb;
+  --canvas-subtle: #efe4dc;
+  --surface: #fffdf9;
+  --surface-elevated: #ffffff;
+  --surface-muted: #efe4dc;
+  --input: #f5ece5;
+  --foreground: #302628;
+  --foreground-muted: #6d605c;
+  --brand: #c86e69;
+  --brand-strong: #a84f59;
+  --accent-secondary: #aaa0bf;
+  --divider: #e4d7cf;
+  --focus: #8f4450;
+  --experience-canvas: transparent;
+  --surface-soft: var(--surface-muted);
+  --surface-inset: var(--input);
+  --text-primary: var(--foreground);
+  --text-secondary: var(--foreground-muted);
+  --text-muted: var(--foreground-muted);
+  --border-strong: var(--divider);
+  --success: #8c5a52;
+  --warning: #a76518;
+  --error: #b43c49;
+  --overlay: rgb(31 20 22 / 0.62);
+  --shadow-soft: 0 8px 28px rgb(75 45 38 / 0.08);
+  --shadow-elevated: 0 24px 70px rgb(75 45 38 / 0.16);
+  --decorative-rose: #e6b6af;
+  --decorative-gold: #c79c63;
+  --decorative-sky: #c8bacf;
+  --control-height: 2.75rem;
+  --font-shell: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  --type-display: clamp(2.65rem, 5.7vw, 4.6rem);
+  --type-page-title: clamp(2rem, 4vw, 2.75rem);
+  --type-step-title: clamp(1.6rem, 2.8vw, 2rem);
+  --type-section-title: 1.125rem;
+  --type-body: 1rem;
+  --type-supporting: 0.9375rem;
+  --type-label: 0.875rem;
+  --type-meta: 0.8125rem;
+  --type-control: 0.875rem;
+  --radius-card: 1.5rem;
+  --radius-button: 0.875rem;
+  --radius-input: 0.875rem;
+  --radius-dialog: 1.75rem;
+  --motion-fast: 160ms;
+  --motion-standard: 200ms;
+  --motion-overlay: 220ms;
+  --motion-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --motion-ease-exit: cubic-bezier(0.4, 0, 1, 1);
+  --ease-standard: var(--motion-standard) var(--motion-ease);
+  --background: var(--canvas);
+  --card: var(--surface);
+  --card-foreground: var(--foreground);
+  --popover: var(--surface-elevated);
+  --popover-foreground: var(--foreground);
+  --primary: var(--brand-strong);
+  --primary-foreground: #fff9f4;
+  --secondary: var(--surface-muted);
+  --secondary-foreground: var(--foreground);
+  --muted: var(--surface-muted);
+  --muted-foreground: var(--foreground-muted);
+  --accent: var(--brand);
+  --accent-foreground: #3a1e20;
+  --destructive: #dc2626;
+  --border: var(--divider);
+  --ring: var(--focus);
+  --chart-1: var(--brand-strong);
+  --chart-2: #c79c63;
+  --chart-3: var(--accent-secondary);
+  --chart-4: #9c6b54;
+  --chart-5: #7b625f;
+  --radius: 0.75rem;
+  --sidebar: var(--surface-elevated);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--brand-strong);
+  --sidebar-primary-foreground: #fff9f4;
+  --sidebar-accent: var(--surface-muted);
+  --sidebar-accent-foreground: var(--foreground);
+  --sidebar-border: var(--divider);
+  --sidebar-ring: var(--focus);
+}
+
+.dark {
+  color-scheme: dark;
+  --canvas: #282124;
+  --canvas-subtle: #49393b;
+  --surface: #352a2b;
+  --surface-elevated: #403234;
+  --surface-muted: #49393b;
+  --input: #3f3033;
+  --foreground: #fff7f1;
+  --foreground-muted: #d2bfbb;
+  --brand: #e29a93;
+  --brand-strong: #f0b3aa;
+  --accent-secondary: #b5a9c9;
+  --divider: #5b484c;
+  --focus: #f0b3aa;
+  --experience-canvas: transparent;
+  --surface-soft: var(--surface-muted);
+  --surface-inset: var(--input);
+  --text-primary: var(--foreground);
+  --text-secondary: var(--foreground-muted);
+  --text-muted: var(--foreground-muted);
+  --border-strong: var(--divider);
+  --success: #d9a097;
+  --warning: #e8bd78;
+  --error: #ff9da6;
+  --overlay: rgb(5 3 4 / 0.76);
+  --shadow-soft: 0 8px 28px rgb(0 0 0 / 0.2);
+  --shadow-elevated: 0 24px 70px rgb(0 0 0 / 0.42);
+  --decorative-rose: #9c615f;
+  --decorative-gold: #9b784c;
+  --decorative-sky: #665d76;
+  --background: var(--canvas);
+  --card: var(--surface);
+  --card-foreground: var(--foreground);
+  --popover: var(--surface-elevated);
+  --popover-foreground: var(--foreground);
+  --primary: var(--brand-strong);
+  --primary-foreground: #352124;
+  --secondary: var(--surface-muted);
+  --secondary-foreground: var(--foreground);
+  --muted: var(--surface-muted);
+  --muted-foreground: var(--foreground-muted);
+  --accent: var(--brand);
+  --accent-foreground: #352124;
+  --destructive: #ff9da6;
+  --border: var(--divider);
+  --ring: var(--focus);
+  --chart-1: var(--brand-strong);
+  --chart-2: #c79c63;
+  --chart-3: var(--accent-secondary);
+  --chart-4: #b5796d;
+  --chart-5: #9e8888;
+  --sidebar: var(--surface);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--brand-strong);
+  --sidebar-primary-foreground: #352124;
+  --sidebar-accent: var(--surface-muted);
+  --sidebar-accent-foreground: var(--foreground);
+  --sidebar-border: var(--divider);
+  --sidebar-ring: var(--focus);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not(.light):not(.dark) {
+    color-scheme: dark;
+    --canvas: #282124;
+    --canvas-subtle: #49393b;
+    --surface: #352a2b;
+    --surface-elevated: #403234;
+    --surface-muted: #49393b;
+    --input: #3f3033;
+    --foreground: #fff7f1;
+    --foreground-muted: #d2bfbb;
+    --brand: #e29a93;
+    --brand-strong: #f0b3aa;
+    --accent-secondary: #b5a9c9;
+    --divider: #5b484c;
+    --focus: #f0b3aa;
+    --success: #d9a097;
+    --warning: #e8bd78;
+    --error: #ff9da6;
+    --background: var(--canvas);
+    --card: var(--surface);
+    --card-foreground: var(--foreground);
+    --popover: var(--surface-elevated);
+    --popover-foreground: var(--foreground);
+    --primary: var(--brand-strong);
+    --primary-foreground: #352124;
+    --secondary: var(--surface-muted);
+    --secondary-foreground: var(--foreground);
+    --muted: var(--surface-muted);
+    --muted-foreground: var(--foreground-muted);
+    --accent: var(--brand);
+    --accent-foreground: #352124;
+    --destructive: #ff9da6;
+    --border: var(--divider);
+    --ring: var(--focus);
+    --sidebar: var(--surface);
+    --sidebar-foreground: var(--foreground);
+    --sidebar-primary: var(--brand-strong);
+    --sidebar-primary-foreground: #352124;
+    --sidebar-accent: var(--surface-muted);
+    --sidebar-accent-foreground: var(--foreground);
+    --sidebar-border: var(--divider);
+    --sidebar-ring: var(--focus);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(
+        circle at 8% 8%,
+        color-mix(in srgb, var(--brand) 11%, transparent),
+        transparent 28rem
+      ),
+      radial-gradient(
+        circle at 92% 18%,
+        color-mix(in srgb, var(--accent-secondary) 9%, transparent),
+        transparent 26rem
+      );
+    background-attachment: fixed;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-semibold text-foreground;
+  }
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  z-index: -1;
+  width: 22rem;
+  height: 22rem;
+  right: -8rem;
+  bottom: -8rem;
+  border-radius: 999px;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--brand) 13%, transparent),
+    color-mix(in srgb, var(--accent-secondary) 9%, transparent)
+  );
+  filter: blur(45px);
+  pointer-events: none;
+}
+
+.paper-texture {
+  background-color: var(--canvas);
+  background-image: radial-gradient(
+    color-mix(in srgb, var(--divider) 52%, transparent) 0.55px,
+    transparent 0.55px
+  );
+  background-size: 12px 12px;
+}
+.soft-blob {
+  position: absolute;
+  width: 24rem;
+  height: 24rem;
+  border-radius: 999px;
+  filter: blur(70px);
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.landing-hero {
+  background-color: var(--canvas);
+}
+
+.landing-hero__memory { box-shadow: var(--shadow-elevated); }
+
+.landing-benefits__frame {
+  overflow: visible;
+}
+
+.landing-benefits__editorial {
+  box-shadow: var(--shadow-soft);
+}
+
+.landing-benefits__editorial h2 {
+  color: #fff8f3;
+}
+
+.landing-benefits__editorial p {
+  color: rgb(255 244 238 / 0.86);
+}
+
+.landing-benefits__list h3 {
+  color: var(--text-primary);
+}
+
+.landing-benefits__list p {
+  color: var(--text-secondary);
+}
+
+.opening-gentle-fade {
+  animation: tiny-fade 0.45s ease both;
+}
+.opening-gift-unwrap {
+  animation: tiny-unwrap 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  transform-origin: top;
+}
+.opening-envelope-reveal {
+  animation: tiny-envelope 0.55s ease both;
+  transform-origin: bottom;
+}
+.opening-sparkle-pop {
+  animation: tiny-pop 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes tiny-fade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+@keyframes tiny-unwrap {
+  from {
+    opacity: 0;
+    transform: scaleY(0.08) scaleX(0.88);
+  }
+}
+@keyframes tiny-envelope {
+  from {
+    opacity: 0;
+    transform: perspective(600px) rotateX(-18deg) translateY(24px);
+  }
+}
+@keyframes tiny-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.86);
+  }
+}
+button,
+a,
+input,
+textarea,
+select {
+  touch-action: manipulation;
+  transition:
+    color var(--ease-standard),
+    background-color var(--ease-standard),
+    border-color var(--ease-standard),
+    box-shadow var(--ease-standard),
+    transform var(--ease-standard);
+}
+button,
+input,
+select {
+  min-height: var(--control-height);
+}
+button:disabled,
+input:disabled,
+textarea:disabled,
+select:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--focus) 72%, transparent);
+  outline-offset: 2px;
+}
+button:active,
+a:active {
+  transform: scale(0.98);
+}
+textarea {
+  field-sizing: content;
+  min-height: 7rem;
+}
+.builder-shell input,
+.builder-shell textarea,
+.builder-shell select {
+  font-size: 16px;
+}
+.no-select {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  .shadow-subtle {
+    box-shadow:
+      0 1px 3px rgb(0 0 0 / 0.05),
+      0 1px 2px rgb(0 0 0 / 0.03);
+  }
+
+  .shadow-warm {
+    box-shadow: 0 4px 12px color-mix(in srgb, var(--brand) 20%, transparent);
+  }
+
+  .shadow-glow {
+    box-shadow: 0 8px 24px color-mix(in srgb, var(--brand) 24%, transparent);
+  }
+
+  .card-gradient {
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--surface-elevated) 96%, var(--brand) 4%) 0%,
+      color-mix(in srgb, var(--surface-muted) 42%, var(--surface-elevated)) 100%
+    );
+  }
+
+  .float-gentle {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .float-slow {
+    animation: float 4s ease-in-out infinite;
+  }
+
+  .pulse-gentle {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.heartbeat-glow {
+  box-shadow: inset 0 0 78px color-mix(in srgb, var(--brand) 10%, transparent);
+}
+.memory-modal {
+  border: 1px solid color-mix(in srgb, var(--primary) 30%, var(--border));
+  outline: none;
+  background-image: none;
+}
+.memory-modal::before,
+.memory-modal::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  width: 38%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--primary), transparent);
+  transform: translateX(-50%);
+}
+.memory-modal::before {
+  top: 9px;
+}
+.memory-modal::after {
+  bottom: 9px;
+}
+.memory-modal__corner {
+  position: absolute;
+  z-index: 2;
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  color: var(--primary);
+  font-size: 0.72rem;
+}
+.memory-modal__corner::before,
+.memory-modal__corner::after {
+  content: "";
+  position: absolute;
+  background: color-mix(in srgb, var(--primary) 55%, transparent);
+}
+.memory-modal__corner::before {
+  width: 26px;
+  height: 1px;
+}
+.memory-modal__corner::after {
+  width: 1px;
+  height: 26px;
+}
+/* Only the top-left mark remains: the other three collided with the 48px
+   close target and the full-width footer action once the modal gained a
+   proper head/body/foot structure. */
+.memory-modal__corner--tl {
+  left: 5px;
+  top: 5px;
+}
+.memory-modal::before,
+.memory-modal::after,
+.memory-modal__corner {
+  display: none;
+}
+
+/* Catch the Heart reveal: center against the usable viewport, then let only
+   the message region scroll when a real content extreme needs it. */
+.catch-memory-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  min-height: 100dvh;
+  box-sizing: border-box;
+  place-items: center;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: max(1rem, env(safe-area-inset-top))
+    max(1rem, env(safe-area-inset-right))
+    max(1rem, env(safe-area-inset-bottom))
+    max(1rem, env(safe-area-inset-left));
+}
+
+.catch-memory-dialog {
+  width: min(92vw, 32.5rem);
+  max-height: min(
+    88dvh,
+    calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 2rem)
+  );
+}
+
+/*
+ * A recipient experience can live inside a desktop phone frame. Container
+ * query units keep the fixed overlay fixed to that preview surface instead
+ * of letting the outer browser viewport decide its width and height.
+ */
+@supports (width: 1cqw) {
+  .catch-memory-overlay {
+    min-height: 100cqh;
+  }
+
+  .catch-memory-dialog {
+    width: min(calc(100cqw - 2rem), 32.5rem);
+    max-height: min(
+      88cqh,
+      calc(100cqh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 2rem)
+    );
+  }
+}
+
+.catch-memory-dialog .heart-dialog__head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0.75rem 0.25rem 1.25rem;
+}
+
+.catch-memory-dialog .heart-dialog__progress {
+  margin: 0;
+  color: var(--experience-surface-muted);
+}
+
+.catch-memory-dialog .heart-dialog__close {
+  display: grid;
+  width: 3rem;
+  height: 3rem;
+  min-width: 3rem;
+  min-height: 3rem;
+  flex: 0 0 auto;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 0.875rem;
+  background: transparent;
+  color: var(--experience-surface-muted);
+  transition: color var(--motion-fast) var(--motion-ease),
+    background-color var(--motion-fast) var(--motion-ease);
+}
+
+.catch-memory-dialog .heart-dialog__close:hover {
+  background: color-mix(in srgb, var(--muted) 70%, transparent);
+  color: var(--experience-surface-foreground);
+}
+
+.catch-memory-dialog .heart-dialog__body {
+  min-height: 0;
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: 0 1.25rem 0.25rem;
+  overscroll-behavior: contain;
+}
+
+.catch-memory-dialog .heart-dialog-photo-frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  height: clamp(7rem, 34svh, 18rem);
+  min-height: 0;
+  margin: 0 auto 0.875rem;
+  overflow: hidden;
+  border-radius: 1rem;
+  background: color-mix(in srgb, #1a1116 78%, var(--secondary));
+}
+
+.catch-memory-dialog .heart-dialog-photo-frame .heart-dialog-photo {
+  display: block;
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  width: 100%;
+  height: 100%;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  margin: 0;
+}
+
+.catch-memory-dialog .heart-dialog__foot {
+  padding: 0.875rem 1.25rem
+    calc(1rem + env(safe-area-inset-bottom));
+}
+
+body.heart-memory-open .site-music-control,
+body.heart-memory-open .catch-game-header-actions {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+body.heart-completion-open {
+  overflow: hidden;
+}
+
+@media (max-height: 560px) and (orientation: landscape) {
+  .catch-memory-overlay {
+    padding-top: max(0.5rem, env(safe-area-inset-top));
+    padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+  }
+
+  .catch-memory-dialog {
+    max-height: calc(
+      100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 1rem
+    );
+  }
+
+  .catch-memory-dialog .heart-dialog__head {
+    padding-top: 0.35rem;
+  }
+
+  .catch-memory-dialog .heart-dialog-photo-frame {
+    height: clamp(7rem, 32svh, 12rem);
+    margin-bottom: 0.5rem;
+  }
+
+  .catch-memory-dialog .heart-dialog__foot {
+    padding-top: 0.5rem;
+  }
+}
+
+@container recipient-preview (min-height: 1px) {
+  .catch-memory-dialog .heart-dialog-photo-frame {
+    height: clamp(7rem, 34cqh, 18rem);
+  }
+}
+
+/* A short phone preview needs the same compact treatment even when the
+   surrounding desktop browser is tall and wide. */
+@container recipient-preview (max-height: 560px) {
+  .catch-memory-overlay {
+    padding-top: max(0.5rem, env(safe-area-inset-top));
+    padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+  }
+
+  .catch-memory-dialog {
+    max-height: calc(
+      100cqh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 1rem
+    );
+  }
+
+  .catch-memory-dialog .heart-dialog__head {
+    padding-top: 0.35rem;
+  }
+
+  .catch-memory-dialog .heart-dialog-photo-frame {
+    height: clamp(7rem, 32cqh, 12rem);
+    margin-bottom: 0.5rem;
+  }
+
+  .catch-memory-dialog .heart-dialog__foot {
+    padding-top: 0.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .catch-memory-dialog .heart-dialog__close {
+    transition: none;
+  }
+}
+.surface-elevated {
+  background: var(--card);
+  border-color: var(--border);
+  color: var(--card-foreground);
+}
+.message-panel {
+  border-radius: 1rem;
+  padding: 0.75rem 1rem;
+}
+.builder-shell .bg-white {
+  background-color: var(--card);
+  color: var(--card-foreground);
+}
+@media (max-width: 380px) {
+  .builder-shell {
+    font-size: 0.95rem;
+  }
+  .builder-shell h1 {
+    font-size: 1.9rem;
+  }
+  .builder-shell section {
+    border-radius: 1.25rem;
+  }
+  .builder-shell .sticky {
+    padding-bottom: calc(0.75rem + env(safe-area-inset-bottom));
+  }
+  .builder-shell--native .builder-sticky-nav:not(.builder-sticky-nav--compact) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(3rem, auto) minmax(0, 1.35fr);
+    align-items: stretch;
+  }
+  .builder-shell--native .builder-sticky-nav--compact {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: stretch;
+  }
+  .builder-shell--native .builder-sticky-nav > button {
+    width: 100%;
+    min-width: 0;
+  }
+  .builder-shell--native .builder-image-card__footer {
+    align-items: flex-start;
+  }
+  .builder-shell--native .builder-image-card__actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .heartbeat-glow {
+    animation: none !important;
+  }
+}
+.opening-demo-gentle-fade {
+  animation: demo-fade 1.1s ease both;
+}
+.opening-demo-gift-unwrap {
+  animation: demo-unwrap 1s cubic-bezier(0.2, 0.85, 0.2, 1) both;
+}
+.opening-demo-envelope-reveal {
+  animation: demo-envelope 1s cubic-bezier(0.2, 0.85, 0.2, 1) both;
+  transform-origin: bottom;
+}
+.opening-demo-sparkle-pop {
+  animation: demo-pop 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes demo-fade {
+  from {
+    opacity: 0;
+    filter: blur(14px);
+    transform: translateY(22px);
+  }
+}
+@keyframes demo-unwrap {
+  from {
+    opacity: 0;
+    clip-path: inset(48% 0 48% 0);
+    transform: scale(0.75) rotate(-2deg);
+  }
+}
+@keyframes demo-envelope {
+  from {
+    opacity: 0;
+    transform: perspective(900px) rotateX(-70deg) translateY(90px);
+  }
+}
+@keyframes demo-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.25) rotate(-12deg);
+  }
+  65% {
+    transform: scale(1.08) rotate(3deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.site-logo-wrap {
+  display: block;
+  aspect-ratio: 2048 / 407;
+}
+.site-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background:
+    radial-gradient(
+      circle at 20% 20%,
+      rgba(245, 183, 161, 0.22),
+      transparent 34%
+    ),
+    rgba(33, 23, 24, 0.78);
+  backdrop-filter: blur(10px);
+}
+.site-intro__scene {
+  position: relative;
+  width: min(100%, 30rem);
+  overflow: hidden;
+  border: 1px solid rgba(255, 232, 220, 0.4);
+  border-radius: 1.5rem;
+  padding: 1.75rem 1.5rem 1.35rem;
+  text-align: center;
+  --intro-ink: #fff8f3;
+  --intro-muted: #ead8d8;
+  color: var(--intro-ink);
+  background: linear-gradient(145deg, #4a2e35, #2c2530 58%, #253b44);
+  box-shadow: 0 1.5rem 4rem rgba(20, 10, 15, 0.42);
+}
+.site-intro__scene h1 {
+  position: relative;
+  margin: 1rem 0 0.75rem;
+  font-size: clamp(1.7rem, 5vw, 2.45rem);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  color: var(--intro-ink);
+}
+.site-intro__scene p {
+  position: relative;
+  margin: 0 auto;
+  max-width: 28rem;
+  color: var(--intro-muted);
+  line-height: 1.65;
+}
+.site-intro__eyebrow {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border: 1px solid rgba(255, 221, 207, 0.32);
+  border-radius: 999px;
+  padding: 0.45rem 0.75rem;
+  color: #ffd7c8;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.site-intro__heart {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 3.1rem;
+  height: 3.1rem;
+  margin: 1.1rem auto 0;
+  border-radius: 1rem;
+  color: #ffb7aa;
+  background: rgba(255, 220, 210, 0.12);
+  box-shadow:
+    0 0 0 0.55rem rgba(255, 185, 170, 0.08),
+    0 1rem 2rem rgba(0, 0, 0, 0.2);
+}
+.site-intro__cta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.3rem;
+  min-height: 2.9rem;
+  border: 0;
+  border-radius: 999px;
+  padding: 0.7rem 1.1rem;
+  color: #3c2027;
+  background: #ffc1b3;
+  font-weight: 700;
+  box-shadow: 0 0.65rem 1.5rem rgba(255, 167, 151, 0.24);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.site-intro__cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0.9rem 1.8rem rgba(255, 167, 151, 0.34);
+}
+.site-intro__skip {
+  position: relative;
+  display: block;
+  margin: 1rem auto 0;
+  border: 0;
+  background: none;
+  color: #e4d0d0;
+  font-size: 0.8rem;
+}
+.site-intro__glow {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(2px);
+  opacity: 0.55;
+}
+.site-intro__glow--one {
+  width: 15rem;
+  height: 15rem;
+  right: -6rem;
+  top: -7rem;
+  background: #dd8d9f;
+}
+.site-intro__glow--two {
+  width: 13rem;
+  height: 13rem;
+  left: -7rem;
+  bottom: -8rem;
+  background: #6aa9b1;
+}
+
+.landing-falling-heart {
+  top: -10%;
+  transform: translateX(0) rotate(-8deg);
+  animation: landing-heart-fall linear infinite;
+  will-change: top, transform;
+}
+
+@keyframes landing-heart-fall {
+  0% {
+    top: -10%;
+    transform: translateX(0) rotate(-8deg);
+  }
+  50% {
+    transform: translateX(var(--heart-drift, 0px)) rotate(8deg);
+  }
+  100% {
+    top: 112%;
+    transform: translateX(0) rotate(-8deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .landing-falling-heart {
+    animation: none;
+  }
+}
+
+.site-container {
+  width: min(calc(100% - 2rem), 1280px);
+}
+
+/* Desktop creation workspace tokens. Native screens keep their own shell and
+   responsive layout; these values only become structural inside the web
+   builder shell. */
+.builder-shell--web {
+  --builder-workspace-max: 82rem;
+  --builder-page-max: var(--builder-workspace-max);
+  --builder-editor-max: 44rem;
+  --builder-wide-max: 64rem;
+  --builder-preview-min: 20rem;
+  --builder-preview-max: 26rem;
+  --builder-workspace-gap: clamp(1.5rem, 2.3vw, 2rem);
+  --builder-sticky-offset: 5rem;
+  width: min(calc(100% - 2rem), var(--builder-page-max));
+  max-width: var(--builder-page-max) !important;
+}
+
+.builder-workspace {
+  min-width: 0;
+}
+
+/* Delivery has one preview panel, independent of the selected device. */
+.builder-workspace--delivery {
+  container: builder-delivery / inline-size;
+}
+
+.delivery-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: "preview" "editor";
+  align-items: start;
+  gap: var(--builder-workspace-gap, 1.5rem);
+}
+
+.delivery-workspace__editor { grid-area: editor; }
+.delivery-workspace__preview { grid-area: preview; }
+
+/* Both columns must fit: 24rem for settings, 40rem for a useful landscape
+   preview, plus the gap and breathing room. Query the workspace, not the window. */
+@container builder-delivery (min-width: 68rem) {
+  .delivery-workspace {
+    grid-template-columns: minmax(24rem, 0.9fr) minmax(40rem, 1.3fr);
+    grid-template-areas: "editor preview";
+    gap: 2rem;
+  }
+
+  .delivery-workspace__preview[data-preview-sticky="true"] {
+    position: sticky;
+    top: var(--builder-sticky-offset, 5rem);
+  }
+}
+
+.builder-shell--native,
+.builder-shell--native .builder-step-content,
+.builder-shell--native .builder-workspace,
+.builder-shell--native .builder-workspace__editor,
+.builder-shell--native .builder-workspace__preview {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.builder-shell--native .builder-sticky-nav {
+  box-sizing: border-box;
+  align-items: stretch;
+}
+
+.builder-shell--native .builder-sticky-nav > *,
+.builder-shell--native .builder-sticky-nav button {
+  max-width: 100%;
+  min-width: 0;
+}
+
+.builder-shell--native .builder-sticky-nav button {
+  white-space: normal;
+}
+
+.builder-shell--native .builder-image-card__footer,
+.builder-shell--native .builder-image-card__actions {
+  max-width: 100%;
+  min-width: 0;
+}
+
+@media (max-width: 639px) {
+  .builder-sticky-nav:not(.builder-sticky-nav--compact) {
+    display: grid;
+    grid-template-columns: minmax(0, 0.3fr) 3.5rem minmax(0, 0.7fr);
+    align-items: stretch;
+    gap: 0.5rem;
+    padding: 0.5rem;
+  }
+
+  .builder-sticky-nav:not(.builder-sticky-nav--compact) > button {
+    width: 100%;
+    min-width: 0;
+    min-height: 3.5rem;
+  }
+
+  .builder-sticky-nav__music {
+    width: 3.5rem;
+    min-width: 3.5rem;
+    max-width: 3.5rem;
+    height: auto;
+    min-height: 3.5rem;
+    aspect-ratio: auto;
+    padding: 0;
+  }
+
+  .builder-image-card__actions--featured {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+  }
+
+  .builder-image-card__actions--featured > :first-child {
+    grid-column: 1 / -1;
+  }
+
+  .builder-image-card__actions--featured > * {
+    min-width: 0;
+    width: 100%;
+  }
+}
+
+@media (min-width: 640px) {
+  .builder-image-card__actions--featured > :first-child {
+    flex: 1.25 1 10rem;
+  }
+}
+
+.builder-shell--web .builder-workspace {
+  width: 100%;
+  max-width: var(--builder-workspace-max);
+  margin-inline: auto;
+}
+
+.builder-workspace__editor,
+.builder-workspace__preview {
+  min-width: 0;
+}
+
+.builder-shell--web .builder-workspace--single .builder-workspace__editor {
+  max-width: var(--builder-editor-max, 46rem);
+}
+
+.builder-shell--web .builder-workspace--customize {
+  max-width: min(100%, 64rem);
+  margin-inline: auto;
+}
+
+.builder-shell--web .builder-workspace--customize .builder-workspace__editor {
+  max-width: none;
+}
+
+.builder-context-note {
+  max-width: 22rem;
+  border-top: 1px solid color-mix(in srgb, var(--primary) 42%, var(--border));
+  padding-top: 1rem;
+}
+
+.builder-shell--web .builder-preview-step {
+  max-width: var(--builder-wide-max);
+  margin-inline: auto;
+}
+
+.builder-shell--web .builder-page-heading {
+  width: 100%;
+  max-width: var(--builder-workspace-max);
+  margin-inline: auto;
+}
+
+.builder-shell--web .builder-progress {
+  width: 100%;
+  max-width: var(--builder-workspace-max);
+  margin-inline: auto;
+}
+
+.builder-site-header .site-container {
+  min-height: 3.75rem;
+}
+
+.builder-site-header .site-logo-wrap {
+  width: 8.5rem;
+}
+
+.builder-site-header nav {
+  gap: 1.25rem;
+}
+
+.builder-shell--web .builder-palette-rail .builder-horizontal-rail {
+  margin-inline: 0;
+  overflow: visible;
+  padding-inline: 0;
+  padding-bottom: 0;
+}
+
+.builder-shell--web .builder-palette-rail .builder-horizontal-rail__items {
+  display: grid;
+  width: auto;
+  max-width: none;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  padding-right: 0;
+}
+
+.builder-shell--web .builder-palette-rail .builder-horizontal-rail__items > button {
+  width: 100% !important;
+  min-width: 0;
+}
+
+/* Appearance choices are touch-first on narrow screens: show complete tiles
+   in a small grid instead of asking users to discover a clipped rail. */
+@media (max-width: 639px) {
+  .builder-horizontal-rail--mobile-grid {
+    overflow-x: visible;
+    padding-inline: 0;
+    padding-bottom: 0;
+  }
+
+  .builder-horizontal-rail--mobile-grid .builder-horizontal-rail__items {
+    display: grid;
+    width: auto;
+    max-width: none;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+    padding-right: 0;
+  }
+
+  .builder-horizontal-rail--mobile-grid .builder-horizontal-rail__items > button {
+    width: 100% !important;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 359px) {
+  .builder-horizontal-rail--mobile-grid .builder-horizontal-rail__items {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .builder-shell--web .builder-workspace--with-preview {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(var(--builder-preview-min), var(--builder-preview-max));
+    align-items: start;
+    gap: var(--builder-workspace-gap);
+  }
+
+  .builder-shell--web .builder-workspace__editor {
+    width: 100%;
+    max-width: var(--builder-editor-max);
+  }
+
+  .builder-shell--web .builder-workspace__preview {
+    position: sticky;
+    top: var(--builder-sticky-offset);
+    max-height: calc(100dvh - var(--builder-sticky-offset) - 1rem);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  .builder-shell--web .builder-workspace--single:not(.builder-workspace--customize) {
+    max-width: var(--builder-editor-max);
+    margin-inline: auto;
+  }
+
+  .builder-shell--web .builder-sticky-nav {
+    width: 100%;
+    max-width: min(100%, var(--builder-workspace-max));
+    align-items: center;
+    justify-content: flex-start;
+    border-width: 1px 0 0;
+    border-radius: 0;
+    background: color-mix(in srgb, var(--background) 94%, var(--card));
+    box-shadow: none;
+    backdrop-filter: none;
+    padding: 0.75rem 0 0;
+  }
+
+  .builder-shell--web .builder-sticky-nav__continue {
+    margin-left: auto;
+  }
+
+  .builder-shell--web .builder-palette-rail .builder-horizontal-rail__items {
+    grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  }
+
+  .builder-shell--web .builder-palette-rail > .mb-2 > .hidden {
+    display: none;
+  }
+
+  .dark .builder-shell--web .builder-workspace__preview {
+    border-inline-start: 1px solid color-mix(in srgb, var(--border) 82%, var(--primary) 18%);
+    padding-inline-start: 1.25rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .builder-shell--web .builder-workspace--with-preview {
+    grid-template-columns: minmax(0, var(--builder-editor-max)) minmax(21rem, var(--builder-preview-max));
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 1023px) {
+  .builder-shell--web .builder-workspace--single .builder-workspace__editor {
+    max-width: 48rem;
+  }
+
+  .builder-shell--web .builder-context-note {
+    display: none;
+  }
+}
+
+.builder-shell--web .builder-export-summary {
+  max-width: 52rem;
+  margin-inline: auto;
+}
+.container.max-w-6xl {
+  width: min(calc(100% - 2rem), 1280px);
+  max-width: 1280px;
+}
+.paper-texture {
+  background-color: var(--canvas);
+  background-image: radial-gradient(
+    color-mix(in srgb, var(--border) 52%, transparent) 0.55px,
+    transparent 0.55px
+  );
+  background-size: 12px 12px;
+}
+.preview-device {
+  position: relative;
+  width: 100%;
+  margin-inline: auto;
+  overflow: hidden;
+  background: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: 0 24px 60px rgb(65 43 36 / 0.18);
+  transition:
+    width 0.25s ease,
+    height 0.25s ease,
+    border-radius 0.25s ease;
+}
+.preview-device-mobile {
+  --preview-device-height: clamp(340px, calc(100dvh - 15rem), 760px);
+  width: min(100%, 390px);
+  height: var(--preview-device-height);
+  min-height: 0;
+  border: 3px solid color-mix(in srgb, var(--foreground) 85%, transparent);
+  border-radius: 2rem;
+}
+.preview-device-desktop {
+  --preview-device-height: clamp(360px, calc(100dvh - 12rem), 640px);
+  width: 100%;
+  height: var(--preview-device-height);
+  min-height: 0;
+  border-radius: 1.25rem;
+}
+.preview-device--compact.preview-device-mobile {
+  --preview-device-height: 32rem;
+}
+.preview-device--compact.preview-device-desktop {
+  --preview-device-height: 28rem;
+}
+.preview-device__screen {
+  position: absolute;
+  inset: 0;
+  container-name: recipient-preview;
+  container-type: size;
+  isolation: isolate;
+  contain: paint;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+/* The bounded screen owns scrolling and fixed overlays; the taller recipient
+   surface must not establish a competing fixed-position containing block. */
+.preview-device__screen .recipient-preview--contained { contain: none; }
+.preview-device__screen .recipient-secret-gate__inner { min-height: 0; }
+.preview-device__screen .recipient-preview-centered { overflow-wrap: anywhere; }
+.preview-device__screen .recipient-preview-centered [data-slot="button"] {
+  height: auto;
+  min-width: 0;
+  max-width: 100%;
+  padding-block: 0.75rem;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.recipient-preview-viewport {
+  container-name: recipient-preview;
+  container-type: size;
+  /* Backgrounds and fixed recipient dialogs use the pane, including when
+     a desktop creator narrows it to the Phone preview. */
+  isolation: isolate;
+  contain: paint;
+}
+/* One unanimated canvas owns the background across every recipient phase.
+   Its minimum follows the pane, independent of percentage-height ancestors. */
+.recipient-preview-frame {
+  box-sizing: border-box;
+  isolation: isolate;
+}
+.recipient-preview-frame > .recipient-preview-surface {
+  flex: 1 0 auto;
+}
+.recipient-preview-viewport .recipient-preview-frame {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+@container recipient-preview (min-height: 1px) {
+  .recipient-preview-frame { min-height: 100cqh; }
+  .recipient-preview-viewport .recipient-preview-frame > .recipient-preview-centered {
+    min-height: calc(100cqh - env(safe-area-inset-bottom));
+  }
+}
+.recipient-preview-centered {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  min-height: 100%;
+}
+.recipient-preview-centered--viewport {
+  height: 100dvh;
+  min-height: 100dvh;
+}
+.recipient-preview-centered__inner {
+  box-sizing: border-box;
+  display: flex;
+  flex: 1 0 auto;
+  min-height: 0;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+.recipient-preview-centered__inner > * { margin-block: auto; }
+.recipient-secret-gate {
+  padding: max(1rem, env(safe-area-inset-top))
+    max(1rem, env(safe-area-inset-right))
+    max(1rem, env(safe-area-inset-bottom))
+    max(1rem, env(safe-area-inset-left));
+}
+.recipient-secret-gate__inner {
+  box-sizing: border-box;
+  min-height: 100%;
+}
+@container recipient-preview (min-height: 1px) {
+  .recipient-preview-centered--viewport,
+  .recipient-preview-centered {
+    height: auto;
+    min-height: 100cqh;
+  }
+}
+
+.preview-device__screen > * {
+  min-height: 100%;
+}
+.photo-puzzle-root {
+  min-height: 100dvh;
+  box-sizing: border-box;
+  --foreground: var(--experience-foreground);
+  --card: var(--experience-surface);
+  --card-foreground: var(--experience-surface-foreground);
+  --muted-foreground: var(--experience-surface-muted);
+  padding: max(1rem, env(safe-area-inset-top))
+    max(0.75rem, env(safe-area-inset-right))
+    max(1.5rem, env(safe-area-inset-bottom))
+    max(0.75rem, env(safe-area-inset-left));
+}
+.recipient-appearance-scene {
+  background-attachment: fixed !important;
+}
+
+/* Standalone contained surfaces own fixed layers too. Bounded preview screens
+ * use the screen as that containing block so tall content cannot enlarge
+ * dialogs or the photographic backdrop beyond the visible pane. */
+.recipient-preview--contained {
+  isolation: isolate;
+  contain: paint;
+}
+
+/* The builder's embedded preview is a simulated viewport. Keep recipient
+ * surfaces on the logical frame instead of the physical browser viewport so
+ * fixed controls, safe-area padding, and template min-heights cannot escape
+ * the preview shell. */
+.recipient-preview--builder-compact {
+  --recipient-preview-vh: 100cqh;
+  --recipient-preview-safe-top: 0px;
+  --recipient-preview-safe-bottom: 0px;
+  min-height: 100%;
+}
+.recipient-preview--builder-compact .photo-puzzle-root,
+.recipient-preview--builder-compact .template-demo-root,
+.recipient-preview--builder-compact [class*="min-h-screen"] {
+  min-height: 100%;
+}
+.recipient-preview--builder-compact [class*="h-screen"],
+.recipient-preview--builder-compact [class*="h-\[100dvh\]"] {
+  height: 100%;
+}
+
+@supports not (contain: paint) {
+  .recipient-preview--contained {
+    transform: translateZ(0);
+  }
+}
+
+.recipient-preview-surface h1,
+.recipient-preview-surface h2,
+.recipient-preview-surface h3,
+.recipient-preview-surface h4,
+.recipient-preview-surface h5,
+.recipient-preview-surface h6 {
+  color: inherit;
+}
+
+.recipient-preview-surface .text-foreground {
+  color: inherit;
+}
+
+.recipient-preview-surface .text-muted-foreground {
+  color: var(--muted-foreground);
+}
+
+/* Surface components carry their own foreground and utility variables. This
+ * prevents a page-level appearance color from leaking into a tinted card,
+ * while allowing shared Button variants to keep their normal semantics. */
+.recipient-surface {
+  color: var(--experience-surface-foreground);
+  --foreground: var(--experience-surface-foreground);
+  --muted-foreground: var(--experience-surface-muted);
+  --card-foreground: var(--experience-surface-foreground);
+  --popover-foreground: var(--experience-surface-foreground);
+  --secondary-foreground: var(--experience-surface-foreground);
+}
+.recipient-surface-elevated {
+  color: var(--experience-surface-elevated-foreground);
+  --foreground: var(--experience-surface-elevated-foreground);
+  --muted-foreground: var(--experience-surface-elevated-muted);
+  --card-foreground: var(--experience-surface-elevated-foreground);
+  --popover-foreground: var(--experience-surface-elevated-foreground);
+  --secondary-foreground: var(--experience-surface-elevated-foreground);
+}
+.recipient-preview-surface [class*="bg-[var(--experience-surface)]"] {
+  color: var(--experience-surface-foreground);
+  --foreground: var(--experience-surface-foreground);
+  --muted-foreground: var(--experience-surface-muted);
+  --card-foreground: var(--experience-surface-foreground);
+  --secondary-foreground: var(--experience-surface-foreground);
+}
+.recipient-preview-surface [class*="bg-[var(--experience-surface-elevated)]"] {
+  color: var(--experience-surface-elevated-foreground);
+  --foreground: var(--experience-surface-elevated-foreground);
+  --muted-foreground: var(--experience-surface-elevated-muted);
+  --card-foreground: var(--experience-surface-elevated-foreground);
+  --secondary-foreground: var(--experience-surface-elevated-foreground);
+}
+
+.recipient-secret-choice:hover,
+.recipient-secret-choice:focus-visible {
+  background: var(--experience-surface) !important;
+  border-color: var(--experience-focus) !important;
+  color: var(--experience-surface-foreground) !important;
+}
+
+.recipient-secret-choice:focus-visible {
+  outline: 2px solid var(--experience-focus);
+  outline-offset: 2px;
+}
+
+.recipient-appearance-scene {
+  color: inherit;
+}
+
+.recipient-appearance-content > * {
+  background: transparent !important;
+}
+.recipient-effects-paused .recipient-appearance-content * {
+  animation-play-state: paused !important;
+}
+.recipient-appearance-content .bg-white\/70 {
+  background: color-mix(in srgb, var(--card) 76%, transparent) !important;
+}
+
+.builder-shell .h-64 {
+  color: var(--foreground);
+}
+@media (max-width: 359px) {
+  .site-container {
+    width: min(calc(100% - 1rem), 1280px);
+  }
+  .builder-shell {
+    padding-inline: 0.5rem;
+  }
+  .builder-shell section {
+    padding: 1rem;
+  }
+}
+
+.concept-preview {
+  position: relative;
+  isolation: isolate;
+}
+.concept-preview::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background: center/cover url("/art/hero.jpg");
+  opacity: 0.22;
+  filter: saturate(0.85);
+}
+.concept-preview::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(135deg, #fff8f3d9, #fff8f3aa);
+}
+.concept-coupons {
+  background:
+    radial-gradient(circle at 10% 8%, #ffd6df, transparent 30rem),
+    radial-gradient(circle at 90% 18%, #ffe3b8, transparent 28rem), #fff8f3;
+}
+.concept-capsule {
+  background:
+    radial-gradient(circle at 15% 10%, #d8e4ff, transparent 28rem),
+    radial-gradient(circle at 88% 25%, #ffe0df, transparent 30rem), #f8f7ff;
+}
+.concept-treasure {
+  background:
+    radial-gradient(circle at 10% 10%, #f0c99b, transparent 25rem),
+    radial-gradient(circle at 90% 20%, #b8ddcb, transparent 28rem),
+    repeating-linear-gradient(0deg, transparent 0 31px, #805b3b0a 32px), #fff7e6;
+}
+.opening-progress {
+  animation: opening-progress 1.7s ease-out both;
+  transform-origin: left;
+}
+
+[data-recipient-motion="reduced"] .opening-demo-gentle-fade,
+[data-recipient-motion="reduced"] .opening-demo-gift-unwrap,
+[data-recipient-motion="reduced"] .opening-demo-envelope-reveal,
+[data-recipient-motion="reduced"] .opening-demo-sparkle-pop,
+[data-recipient-motion="reduced"] .opening-demo-cinematic-curtain,
+[data-recipient-motion="reduced"] .opening-demo-polaroid-drop,
+[data-recipient-motion="reduced"] .opening-demo-heart-bloom,
+[data-recipient-motion="reduced"] .opening-demo-storybook-turn,
+[data-recipient-motion="reduced"] .opening-progress {
+  animation: none !important;
+  transition: none !important;
+}
+
+[data-recipient-motion="reduced"] .opening-progress {
+  transform: scaleX(1) !important;
+}
+
+@keyframes opening-progress {
+  from {
+    transform: scaleX(0);
+  }
+}
+@media (max-width: 640px) {
+  .preview-device {
+    max-width: 100%;
+  }
+  .preview-device__screen {
+    scrollbar-width: thin;
+  }
+  .site-container {
+    width: min(calc(100% - 1rem), 1280px);
+  }
+}
+
+.opening-demo-cinematic-curtain {
+  animation: demo-curtain 1.15s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+.opening-demo-polaroid-drop {
+  animation: demo-polaroid 1.05s cubic-bezier(0.22, 1, 0.36, 1) both;
+  transform-origin: center;
+}
+.opening-demo-heart-bloom {
+  animation: demo-bloom 1.15s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.opening-demo-storybook-turn {
+  animation: demo-page 1.1s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  transform-origin: left center;
+}
+@keyframes demo-curtain {
+  from {
+    opacity: 0;
+    clip-path: inset(0 50%);
+    filter: brightness(0.45);
+  }
+  to {
+    clip-path: inset(0);
+  }
+}
+@keyframes demo-polaroid {
+  from {
+    opacity: 0;
+    transform: translateY(-90px) rotate(9deg) scale(0.82);
+  }
+  70% {
+    transform: translateY(6px) rotate(-2deg) scale(1.02);
+  }
+}
+@keyframes demo-bloom {
+  from {
+    opacity: 0;
+    filter: blur(15px);
+    transform: scale(0.08) rotate(-18deg);
+  }
+  72% {
+    transform: scale(1.08) rotate(3deg);
+  }
+}
+@keyframes demo-page {
+  from {
+    opacity: 0;
+    transform: perspective(900px) rotateY(-82deg) translateX(-35px);
+  }
+}
+@media (max-width: 480px) {
+  .builder-shell {
+    overflow-x: clip;
+  }
+  .builder-shell section,
+  .builder-shell [class*="rounded-[2rem]"] {
+    max-width: 100%;
+  }
+  .builder-shell input,
+  .builder-shell textarea,
+  .builder-shell select {
+    font-size: 16px;
+  }
+  .builder-shell button {
+    touch-action: manipulation;
+  }
+  .site-intro__scene {
+    border-radius: 1.4rem;
+    padding: 1.5rem 1.1rem;
+  }
+  .site-intro__scene h1 {
+    font-size: 2rem;
+  }
+  .paper-texture {
+    background-attachment: scroll;
+  }
+}
+
+/*
+ * Premium keepsake polish
+ *
+ * The app intentionally stays soft and welcoming, but controls and surfaces
+ * should feel considered rather than flat. These tokens are shared by the
+ * builder, template gallery, previews, and the generated recipient views.
+ */
+:root {
+  --shadow-control:
+    0 1px 2px rgb(63 34 29 / 0.06), 0 6px 18px rgb(125 68 67 / 0.08);
+  --shadow-control-hover:
+    0 2px 4px rgb(63 34 29 / 0.08), 0 12px 28px rgb(125 68 67 / 0.14);
+  --shadow-field:
+    inset 0 1px 0 rgb(255 255 255 / 0.72), 0 1px 2px rgb(63 34 29 / 0.04);
+  /* No ring here: the focus ring is owned solely by focus-visible:ring-2 on
+     the field primitives. This token used to add a second 0 0 0 4px ring on
+     top of that ring and the 1px border, which read as a heavy triple edge. */
+  --shadow-field-focus:
+    inset 0 1px 0 rgb(255 255 255 / 0.76), 0 6px 18px rgb(125 68 67 / 0.10);
+  --shadow-popover:
+    0 18px 50px rgb(63 34 29 / 0.18), 0 3px 10px rgb(63 34 29 / 0.08);
+  --surface-highlight: rgb(255 255 255 / 0.72);
+}
+
+html.dark {
+  --shadow-control: 0 1px 2px rgb(0 0 0 / 0.25), 0 8px 24px rgb(0 0 0 / 0.24);
+  --shadow-control-hover:
+    0 2px 4px rgb(0 0 0 / 0.28), 0 14px 32px rgb(0 0 0 / 0.34);
+  --shadow-field:
+    inset 0 1px 0 rgb(255 255 255 / 0.06), 0 1px 2px rgb(0 0 0 / 0.18);
+  --shadow-field-focus:
+    inset 0 1px 0 rgb(255 255 255 / 0.08), 0 8px 22px rgb(0 0 0 / 0.26);
+  --shadow-popover: 0 22px 56px rgb(0 0 0 / 0.42), 0 3px 12px rgb(0 0 0 / 0.28);
+  --surface-highlight: rgb(255 244 238 / 0.07);
+}
+
+html,
+body {
+  min-width: 320px;
+}
+
+body {
+  font-family: var(--font-shell);
+  font-feature-settings:
+    "liga" 1,
+    "calt" 1;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Shared shell type roles. Recipient experiences intentionally remain outside
+   these selectors and keep their own scoped lettering choices. */
+.site-display {
+  font-size: var(--type-display);
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+}
+
+.site-page-title,
+.builder-page-title {
+  font-size: var(--type-page-title);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+
+.site-section-title,
+.builder-section-title {
+  font-size: var(--type-section-title);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+}
+
+.builder-step-title {
+  font-size: var(--type-step-title);
+  font-weight: 700;
+  line-height: 1.16;
+  letter-spacing: -0.025em;
+}
+
+.site-supporting {
+  font-size: var(--type-supporting);
+  line-height: 1.7;
+}
+
+.type-meta {
+  font-size: var(--type-meta);
+  line-height: 1.45;
+  font-variant-numeric: tabular-nums;
+}
+
+.builder-field-label {
+  font-size: var(--type-label);
+  line-height: 1.35;
+}
+
+.builder-shell .builder-helper {
+  font-size: var(--type-supporting);
+  line-height: 1.55;
+}
+
+.builder-shell h3.font-semibold:not([class*="text-"]) {
+  font-size: var(--type-section-title);
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+}
+
+.builder-shell legend {
+  font-size: var(--type-label);
+  line-height: 1.35;
+}
+
+.settings-page h2 {
+  font-size: var(--type-section-title);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+}
+
+body::before {
+  background:
+    radial-gradient(
+      circle at 8% 10%,
+      color-mix(in srgb, var(--brand) 10%, transparent),
+      transparent 27rem
+    ),
+    radial-gradient(
+      circle at 93% 17%,
+      color-mix(in srgb, var(--accent-secondary) 8%, transparent),
+      transparent 29rem
+    ),
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--canvas) 72%, transparent),
+      transparent 62%
+    );
+  opacity: 0.72;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  opacity: 0.24;
+  background: radial-gradient(
+    circle at 50% -18%,
+    color-mix(in srgb, var(--surface-highlight) 48%, transparent),
+    transparent 42rem
+  );
+}
+
+::selection {
+  color: var(--primary-foreground);
+  background: color-mix(in srgb, var(--primary) 78%, transparent);
+}
+
+:root {
+  --scrollbar-thumb: color-mix(in srgb, var(--primary) 35%, var(--border));
+  --scrollbar-thumb-hover: color-mix(in srgb, var(--primary) 58%, var(--border));
+  --scrollbar-track: color-mix(in srgb, var(--foreground) 5%, var(--background));
+}
+html:not(.native-shell), html:not(.native-shell) * {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+html:not(.native-shell) { scrollbar-gutter: stable; }
+html:not(.native-shell) ::-webkit-scrollbar,
+html:not(.native-shell)::-webkit-scrollbar { width: 8px; height: 8px; }
+html:not(.native-shell) ::-webkit-scrollbar-track,
+html:not(.native-shell)::-webkit-scrollbar-track { background: var(--scrollbar-track); }
+html:not(.native-shell) ::-webkit-scrollbar-thumb,
+html:not(.native-shell)::-webkit-scrollbar-thumb {
+  border: 2px solid var(--scrollbar-track);
+  border-radius: 999px;
+  background: var(--scrollbar-thumb);
+  background-clip: padding-box;
+}
+html:not(.native-shell) ::-webkit-scrollbar-thumb:hover,
+html:not(.native-shell)::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+  background-clip: padding-box;
+}
+/* Chromium's standard color property otherwise suppresses its thumb hover
+   rules. Firefox retains the standard thin/color treatment above. */
+@supports selector(::-webkit-scrollbar) {
+  html:not(.native-shell), html:not(.native-shell) * {
+    scrollbar-width: auto;
+    scrollbar-color: auto;
+  }
+}
+.recipient-preview-surface {
+  --scrollbar-thumb: color-mix(in srgb, var(--experience-accent) 40%, var(--experience-border));
+  --scrollbar-thumb-hover: color-mix(in srgb, var(--experience-accent) 65%, var(--experience-border));
+  --scrollbar-track: var(--experience-surface);
+}
+/* Android retains its native scrolling affordance. */
+.native-shell, .native-shell * { scrollbar-width: auto; scrollbar-color: auto; }
+@media (forced-colors: active) {
+  html:not(.native-shell), html:not(.native-shell) * { scrollbar-color: auto; scrollbar-width: auto; }
+  html:not(.native-shell) ::-webkit-scrollbar-thumb,
+  html:not(.native-shell)::-webkit-scrollbar-thumb { background: CanvasText; border-color: Canvas; }
+  html:not(.native-shell) ::-webkit-scrollbar-track,
+  html:not(.native-shell)::-webkit-scrollbar-track { background: Canvas; }
+}
+
+.letter-recipient-photo { width: min(100%, 66.666dvh, 36rem); }
+.quiz-memory-photo { width: min(100%, 53.333dvh, 24rem); }
+.quiz-memory-feedback { margin-block-start: 24px; line-height: 1.65; }
+@container recipient-preview (max-width: 599px) {
+  .letter-recipient-photo { width: min(100%, 53.333dvh, 36rem); }
+}
+@supports (height: 1cqh) {
+  .recipient-preview-surface .letter-recipient-photo { width: min(100%, 66.666cqh, 36rem); }
+  .recipient-preview-surface .quiz-memory-photo { width: min(100%, 53.333cqh, 24rem); }
+  @container recipient-preview (max-width: 599px) {
+    .recipient-preview-surface .letter-recipient-photo { width: min(100%, 53.333cqh, 36rem); }
+  }
+}
+@media (max-height: 480px) {
+  .letter-recipient-panel { display: block; }
+  .letter-recipient-body { overflow: visible; }
+}
+@container recipient-preview (max-height: 480px) {
+  .letter-recipient-panel { display: block; }
+  .letter-recipient-body { overflow: visible; }
+}
+
+/* Native Android: backdrop-filter blur is one of the more expensive paints
+   in an Android WebView (it forces a full compositor pass under every
+   sheet/toolbar). Keep the frosted-glass look but at a much cheaper radius
+   instead of removing it outright — most of these are static translucent
+   headers/sheets, not moving content, so the visual difference is small. */
+.native-shell .backdrop-blur-xl,
+.native-shell .backdrop-blur-md {
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+.native-shell .backdrop-blur-sm {
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+
+/* Android touch floor: shared and template controls should remain usable
+   even when a component author forgets to add a local min-height utility. */
+.native-shell button,
+.native-shell [data-slot="button"] {
+  min-height: 3rem;
+}
+
+a:not([class]) {
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.2em;
+  transition:
+    color 180ms ease,
+    text-decoration-color 180ms ease;
+}
+
+a:not([class]):hover {
+  color: var(--primary);
+}
+
+/* Shared surfaces used by the template gallery and feature sections. */
+.premium-card {
+  position: relative;
+  isolation: isolate;
+  border-color: color-mix(in srgb, var(--border) 76%, var(--primary) 24%);
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--card) 97%, var(--brand) 3%),
+    var(--card)
+  );
+  box-shadow:
+    var(--shadow-soft),
+    inset 0 1px 0 var(--surface-highlight);
+}
+
+.premium-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle at 92% 0%,
+    color-mix(in srgb, var(--brand) 12%, transparent),
+    transparent 36%
+  );
+  opacity: 0.9;
+}
+
+.premium-card:hover {
+  box-shadow:
+    var(--shadow-elevated),
+    inset 0 1px 0 var(--surface-highlight);
+}
+
+.premium-card h3,
+.builder-shell h1,
+.recipient-appearance-content h1,
+.recipient-appearance-content h2,
+.recipient-appearance-content h3 {
+  overflow-wrap: anywhere;
+}
+
+.surface-elevated,
+[role="dialog"] {
+  box-shadow:
+    var(--shadow-elevated),
+    inset 0 1px 0 var(--surface-highlight);
+  backdrop-filter: blur(18px);
+}
+
+[role="dialog"] {
+  border-color: color-mix(in srgb, var(--border) 68%, var(--primary) 32%);
+}
+
+.message-panel {
+  border: 1px solid color-mix(in srgb, var(--border) 70%, var(--primary) 30%);
+  background: color-mix(
+    in srgb,
+    var(--card) 86%,
+    var(--brand) 14%
+  );
+  box-shadow:
+    inset 0 1px 0 var(--surface-highlight),
+    var(--shadow-soft);
+}
+
+/* A calm, consistent field language across every builder step. */
+[data-slot="input"],
+[data-slot="textarea"] {
+  caret-color: var(--primary);
+}
+
+[data-slot="input"]:focus-visible,
+[data-slot="textarea"]:focus-visible,
+[data-slot="select-trigger"]:focus-visible {
+  outline: none;
+}
+
+[data-slot="input"][aria-invalid="true"],
+[data-slot="textarea"][aria-invalid="true"],
+[data-slot="select-trigger"][aria-invalid="true"] {
+  border-color: color-mix(in srgb, var(--error) 72%, var(--border));
+  background: color-mix(in srgb, var(--card) 93%, var(--error) 7%);
+}
+
+[data-slot="input"]::file-selector-button {
+  cursor: pointer;
+  transition:
+    background-color 180ms ease,
+    color 180ms ease;
+}
+
+[data-slot="input"]::file-selector-button:hover {
+  background: color-mix(in srgb, var(--primary) 16%, var(--secondary));
+  color: var(--foreground);
+}
+
+/* Messages sit directly beneath their field without making the form noisy. */
+.inline-field-message {
+  width: fit-content;
+  max-width: 100%;
+  border: 1px solid transparent;
+  border-radius: 0.75rem;
+  padding: 0.42rem 0.65rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.35rem;
+}
+
+.inline-field-message--error {
+  color: color-mix(in srgb, var(--error) 88%, var(--foreground));
+  border-color: color-mix(in srgb, var(--error) 24%, transparent);
+  background: color-mix(in srgb, var(--error) 9%, transparent);
+}
+
+.inline-field-message--warning {
+  color: color-mix(in srgb, var(--warning) 86%, var(--foreground));
+  border-color: color-mix(in srgb, var(--warning) 24%, transparent);
+  background: color-mix(in srgb, var(--warning) 9%, transparent);
+}
+
+.inline-field-message--success {
+  color: color-mix(in srgb, var(--success) 86%, var(--foreground));
+  border-color: color-mix(in srgb, var(--success) 24%, transparent);
+  background: color-mix(in srgb, var(--success) 9%, transparent);
+}
+
+.inline-field-message--info {
+  color: color-mix(in srgb, var(--primary) 86%, var(--foreground));
+  border-color: color-mix(in srgb, var(--primary) 22%, transparent);
+  background: color-mix(in srgb, var(--primary) 8%, transparent);
+}
+
+/* Step content owns its own group boundaries. The shell must not turn every
+   animated step into one oversized card. */
+.builder-step-content {
+  border: 0;
+  box-shadow: none;
+}
+
+
+
+.builder-shell label {
+  letter-spacing: -0.005em;
+}
+
+.builder-shell input::placeholder,
+.builder-shell textarea::placeholder {
+  color: color-mix(in srgb, var(--muted-foreground) 72%, transparent);
+}
+
+/* Icon and link buttons intentionally opt out of the roomy tap-target floor. */
+[data-slot="button"].size-6,
+[data-slot="button"].size-8,
+[data-slot="button"].size-9,
+[data-slot="button"].size-10,
+[data-slot="button"].size-12,
+[data-slot="button"].min-h-0 {
+  min-height: 0;
+}
+
+/* Small-screen controls retain a comfortable 48px tap target and safe-area
+   breathing room. Link-style controls stay compact by explicit exception. */
+@media (max-width: 640px) {
+  [data-slot="button"],
+  [data-slot="select-trigger"] {
+    min-height: 3rem;
+  }
+
+  [data-slot="button"].size-6,
+  [data-slot="button"].size-8,
+  [data-slot="button"].size-9,
+  [data-slot="button"].size-10,
+  [data-slot="button"].size-12,
+  .android-touch-target {
+    min-height: 3rem;
+    min-width: 3rem;
+  }
+
+  [data-slot="button"].min-h-0 {
+    min-height: 0;
+  }
+
+  [data-slot="input"],
+  [data-slot="textarea"] {
+    font-size: 16px;
+  }
+}
+
+/* Polish: keep the native touch floor after the compact web sizing rules
+   above. Icon buttons also need width, not only height, to stay comfortable
+   on Android. */
+@media (max-width: 640px) {
+  .native-shell [data-slot="button"],
+  .native-shell [data-slot="select-trigger"] {
+    min-height: 3rem;
+  }
+}
+
+.native-shell [data-slot="button"].size-6,
+.native-shell [data-slot="button"].size-8,
+.native-shell [data-slot="button"].size-9,
+.native-shell [data-slot="button"].size-10,
+.native-shell [data-slot="button"].size-12,
+.native-shell .android-touch-target {
+  min-height: 3rem;
+  min-width: 3rem;
+}
+
+/* Short landscape (phones rotated, small tablets): the builder's fixed chrome
+   — header, step nav, sticky action bar — eats a much bigger share of a short
+   viewport than it does in portrait, so compact each of those pieces instead
+   of shrinking the content area they leave behind. */
+@media (max-height: 500px) and (orientation: landscape) {
+  .builder-shell--native {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+  .builder-shell--native h1 {
+    font-size: 1.4rem;
+  }
+  .builder-shell--native header p:first-child {
+    display: none;
+  }
+  .builder-shell--native nav[aria-label="Builder progress"] {
+    padding: 0;
+  }
+  .builder-shell--native nav[aria-label="Builder progress"] button {
+    min-height: 3rem;
+  }
+  .builder-shell--native .sticky {
+    padding: 0.4rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .opening-gentle-fade,
+  .opening-gift-unwrap,
+  .opening-envelope-reveal,
+  .opening-sparkle-pop,
+  .opening-demo-gentle-fade,
+  .opening-demo-gift-unwrap,
+  .opening-demo-envelope-reveal,
+  .opening-demo-sparkle-pop,
+  .opening-demo-cinematic-curtain,
+  .opening-demo-polaroid-drop,
+  .opening-demo-heart-bloom,
+  .opening-demo-storybook-turn,
+  .opening-progress {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .opening-progress {
+    transform: scaleX(1) !important;
+  }
+
+  .premium-card,
+  [data-slot="button"],
+  [data-slot="input"],
+  [data-slot="textarea"],
+  [data-slot="select-trigger"] {
+    transition: none;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    background-attachment: scroll;
+  }
+
+  body::before {
+    animation: none;
+    filter: blur(32px);
+    transform: none;
+  }
+
+  .recipient-appearance-scene {
+    background-attachment: scroll !important;
+  }
+
+  .surface-elevated,
+  [role="dialog"] {
+    backdrop-filter: blur(6px);
+  }
+
+  .premium-card {
+    box-shadow: var(--shadow-soft);
+  }
+}
+
+/* Preserve the lower-cost treatment on touch laptops without changing the
+   desktop workspace topology. */
+@media (min-width: 769px) and (pointer: coarse) {
+  body {
+    background-attachment: scroll;
+  }
+
+  body::before {
+    animation: none;
+    filter: blur(32px);
+    transform: none;
+  }
+
+  .recipient-appearance-scene {
+    background-attachment: scroll !important;
+  }
+
+  .surface-elevated,
+  [role="dialog"] {
+    backdrop-filter: blur(6px);
+  }
+
+  .premium-card {
+    box-shadow: var(--shadow-soft);
+  }
+}
+
+
+
+/* ---------------------------------------------------------------------- */
+/* Android app shell                                                      */
+/*                                                                         */
+/* Bottom nav (portrait phones) vs. left rail (landscape phones/tablets)  */
+/* toggle purely by media query — both mount unconditionally so there's   */
+/* no JS-driven flash while a resize crosses the breakpoint. The query    */
+/* matches lib/use-media-query.ts's useAndroidWideLayout() exactly, so    */
+/* the Appearance step's two-pane layout and the select sheet/dialog      */
+/* variant switch at the same point as the nav itself.                   */
+/* ---------------------------------------------------------------------- */
+
+:root {
+  --android-topbar-h: 3.25rem;
+  --android-bottomnav-h: 4.5rem;
+  --android-rail-w: 5rem;
+}
+
+.android-nav-rail {
+  display: none;
+}
+
+/* Keep rail controls clear of a left-edge cutout when a phone is rotated. */
+.android-nav-rail {
+  padding-left: env(safe-area-inset-left);
+}
+
+/* Applied to the <main> of top-level native screens (templates, library,
+   settings) so content is never clipped by the bottom nav or the rail. */
+.android-page {
+  padding-bottom: calc(var(--android-bottomnav-h) + env(safe-area-inset-bottom));
+}
+
+@media (orientation: landscape), (min-width: 600px) {
+  .android-nav-bottom {
+    display: none;
+  }
+
+  .android-nav-rail {
+    display: flex;
+  }
+
+  .android-page {
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: calc(var(--android-rail-w) + env(safe-area-inset-left));
+  }
+}
+
+/* ---------------------------------------------------------------------- */
+/* Android design tokens                                                  */
+/*                                                                         */
+/* One place for the spacing/radius/motion values every native-only       */
+/* component should reuse instead of re-deriving its own one-off numbers. */
+/* Consumed via `.android-*` utility classes below, not by importing      */
+/* these variables into inline styles — keeps everything reachable from   */
+/* plain Tailwind className strings, matching how the rest of the app     */
+/* already styles itself.                                                 */
+/* ---------------------------------------------------------------------- */
+
+:root {
+  --android-space-screen: 1rem; /* ~16px small phone */
+  --android-card-padding: 1rem; /* 16px compact card */
+  --android-section-gap: 1.5rem; /* ~24px */
+  --android-field-gap: 1rem; /* ~16px */
+  --android-radius-card: 1.25rem;
+  --android-radius-sheet: 1.75rem;
+  --android-motion-fast: 140ms;
+  --android-motion-normal: 200ms;
+  --android-motion-sheet: 240ms;
+}
+
+@media (min-width: 400px) {
+  :root {
+    --android-space-screen: 1.25rem; /* ~20px normal phone */
+  }
+}
+
+@media (min-width: 600px) {
+  :root {
+    --android-space-screen: 1.75rem; /* ~28px tablet */
+    --android-card-padding: 1.25rem;
+  }
+}
+
+.android-card {
+  border-radius: var(--android-radius-card);
+  padding: var(--android-card-padding);
+}
+
+/* Bottom sheets must remain usable on short phones, split-screen windows, and
+   while the IME is visible. This is native-only so desktop web dialogs keep
+   their own sizing rules. */
+.native-shell .android-sheet-panel {
+  max-height: min(90dvh, 42rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-height: 560px) {
+  .native-shell .android-sheet-panel {
+    max-height: calc(100dvh - env(safe-area-inset-top) - 0.5rem);
+  }
+}
+
+.native-shell .android-recipient-dialog {
+  max-height: calc(100dvh - env(safe-area-inset-top) - 0.5rem);
+  overscroll-behavior: contain;
+}
+
+@media (max-height: 560px) and (orientation: landscape) {
+  .native-shell .android-recipient-dialog {
+    border-radius: 1.25rem;
+  }
+}
+
+/* Short landscape is a real Android posture, not a squeezed desktop page. */
+@media (max-height: 560px) and (orientation: landscape) {
+  .native-shell .catch-game-shell,
+  .native-shell .catch-game-content {
+    min-height: max(22.5rem, 100svh);
+  }
+
+  .native-shell .catch-game-content {
+    padding: 0.75rem;
+  }
+
+  .native-shell .catch-game-header h1 {
+    font-size: 1.6rem;
+  }
+
+  .native-shell .catch-game-header p {
+    margin-top: 0.35rem;
+    max-height: 2.5rem;
+    overflow-y: auto;
+  }
+
+  .native-shell .catch-game-field {
+    min-height: min(17rem, 62svh);
+    margin-top: 0.75rem;
+  }
+
+  .native-shell .photo-puzzle-root,
+  .native-shell .memory-quiz-root,
+  .native-shell .choose-date-root,
+  .native-shell .storybook-root {
+    min-height: 100svh;
+    padding-top: 0.75rem;
+    padding-bottom: 1rem;
+  }
+
+}
+
+.android-section-stack > * + * {
+  margin-top: var(--android-section-gap);
+}
+
+.android-field-stack > * + * {
+  margin-top: var(--android-field-gap);
+}
+
+.builder-image-card__footer { display: grid; grid-template-columns: minmax(0, 1fr); gap: .75rem; }
+.builder-image-card__name { overflow-wrap: anywhere; word-break: normal; }
+.builder-image-card__actions { width: 100%; }
+
+.appearance-disclosure { border: 1px solid var(--border); border-radius: var(--radius-input); }
+.appearance-disclosure[data-expanded="true"] { border-color: color-mix(in srgb, var(--primary) 40%, var(--border)); }
+.appearance-disclosure__trigger { border-radius: inherit; transition: background-color var(--motion-standard) var(--motion-ease); }
+.appearance-disclosure__trigger:hover { background: color-mix(in srgb, var(--primary) 5%, var(--card)); }
+.appearance-disclosure__chevron { transition: transform var(--motion-standard) var(--motion-ease); }
+.appearance-disclosure[data-expanded="true"] .appearance-disclosure__chevron { transform: rotate(180deg); }
+.appearance-disclosure__body:not([hidden]) { animation: appearance-disclosure-in var(--motion-standard) var(--motion-ease); }
+@keyframes appearance-disclosure-in { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+.landing-external-link:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; border-radius: .25rem; }
+
+/* Recipient sizing follows the actual pane, not the surrounding builder.
+   The same rules run in demos, full previews, and recipient viewing. */
+@container recipient-preview (min-height: 1px) {
+  .recipient-preview-surface .photo-puzzle-root,
+  .recipient-preview-surface .open-when-root,
+  .recipient-preview-surface .choose-date-root,
+  .recipient-preview-surface .memory-quiz-root,
+  .recipient-preview-surface .catch-game-shell,
+  .recipient-preview-surface .catch-game-content { min-height: 100cqh; }
+  .recipient-preview-surface .catch-game-field { min-height: clamp(280px, 62cqh, 580px); }
+  .recipient-dialog-overlay > [class*="max-h-"] { max-height: calc(100cqh - 1rem); }
+}
+.recipient-title,
+.recipient-preview-surface .catch-game-header h1 { font-size: clamp(1.5rem, 6cqw, 3rem); line-height: 1.15; overflow-wrap: anywhere; }
+.open-when-root,
+.choose-date-root,
+.memory-quiz-root,
+.photo-puzzle-root { padding: clamp(.75rem, 3cqw, 2rem); }
+.storybook-page--adjacent { display: none; }
+.recipient-surface [class*="text-[var(--experience-muted)]"],
+.storybook-page [class*="text-[var(--experience-muted)]"] { color: var(--experience-surface-muted); }
+.recipient-surface-elevated [class*="text-[var(--experience-muted)]"] { color: var(--experience-surface-elevated-muted); }
+
+@container recipient-preview (min-width: 640px) {
+  .open-when-grid, .date-options { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .date-result-actions { flex-direction: row; }
+  .recipient-dialog-overlay { align-items: center; padding: 1rem; }
+  .recipient-preview-surface [role="alertdialog"] > .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@container recipient-preview (min-width: 760px) {
+  .storybook-spread { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; }
+  .storybook-page--adjacent { display: flex; }
+}
+@container recipient-preview (min-width: 900px) {
+  .open-when-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@container recipient-preview (max-width: 639px) {
+  .recipient-preview-surface .cover-actions { grid-template-columns: minmax(0, 1fr); }
+  .recipient-preview-surface [role="alertdialog"] > .grid { grid-template-columns: minmax(0, 1fr); }
+  .recipient-preview-centered__inner > .recipient-surface,
+  .recipient-preview-centered__inner > .recipient-surface-elevated { padding: 1rem; border-radius: 1rem; }
+  .recipient-preview-surface .storybook-page { padding: 1.25rem; }
+  .recipient-preview-surface .cozy-playlist-root > section { padding: 1rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .appearance-disclosure__body:not([hidden]) { animation: none; }
+  .appearance-disclosure__trigger, .appearance-disclosure__chevron, .preview-device { transition: none; }
+}
+
+/* Authored recipient copy must stay readable independently of authoring budgets. */
+.recipient-preview-surface { min-inline-size: 0; overflow-wrap: anywhere; word-break: normal; }
+/* Finish entrance transforms so viewport dialogs do not remain attached to a
+   transformed, potentially much taller experience surface. */
+.recipient-preview-surface[class*="opening-"] { animation-fill-mode: backwards; }
+.recipient-preview-surface .recipient-dialog-overlay > :is(section,article,div) { min-width: 0; max-height: calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 2rem); overflow-y: auto; overscroll-behavior: contain; }
+@container recipient-preview (min-height: 1px) {
+  .recipient-preview-surface .recipient-dialog-overlay > :is(section,article,div) { max-height: calc(100cqh - 2rem); }
+}
+.recipient-preview-surface :where(div,section,article,header,footer,li) { min-inline-size: 0; }
+.recipient-preview-surface :is(p,h1,h2,h3,h4,li,button,a,label,strong,small) { overflow-wrap: anywhere; }
+.recipient-preview-surface :is(p,.completion-message,.completion-closing,.completion-signature) { white-space: pre-wrap; }
+.recipient-preview-surface :is(.recipient-surface,.recipient-surface-elevated,.storybook-page,.storybook-spread,.recipient-completion-panel) { min-inline-size: 0; }
+.recipient-preview-surface button { max-inline-size: 100%; white-space: normal; height: auto; min-height: 48px; }
+.recipient-completion-overlay { position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center; overflow: auto; overscroll-behavior: contain; padding: max(1rem,env(safe-area-inset-top)) max(1rem,env(safe-area-inset-right)) max(1rem,env(safe-area-inset-bottom)) max(1rem,env(safe-area-inset-left)); }
+.recipient-completion-panel { display: flex; flex-direction: column; width: 100%; max-width: 34rem; min-width: 0; max-height: calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 2rem); overflow: auto; overscroll-behavior: contain; }
+.recipient-preview-surface .recipient-completion-panel { max-inline-size: 34rem; }
+.recipient-completion-panel > * { flex-shrink: 0; }
+.recipient-completion-panel > svg { align-self: center; }
+.recipient-completion-panel .recipient-completion-body { flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
+.recipient-completion-panel[data-scroll-whole="true"] { display: block; }
+.recipient-completion-panel[data-scroll-whole="true"] .recipient-completion-body { overflow: visible; }
+.recipient-completion-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: .75rem; }
+.recipient-completion-actions > button { flex: 1 1 13rem; min-width: 0; height: auto; min-height: 48px; white-space: normal; padding-block: .75rem; }
+@container recipient-preview (min-height: 1px) { .recipient-completion-panel { max-height: calc(100cqh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 2rem); } }
+@media (max-height: 560px) { .recipient-completion-panel { display: block; } .recipient-completion-panel .recipient-completion-body { overflow: visible; } }
+@container recipient-preview (max-height: 560px) { .recipient-completion-panel { display: block; } .recipient-completion-panel .recipient-completion-body { overflow: visible; } }
+.preview-device.preview-device-available { --preview-device-height: clamp(20rem,70dvh,52rem); width: 100%; max-width: none; height: var(--preview-device-height); padding: 0; border: 0; border-radius: 0; box-shadow: none; transform: none; }
+.preview-device-available::before,.preview-device-available::after { display: none; }
+.preview-device-available .preview-device__screen { width: 100%; border-radius: 0; height: clamp(20rem,70dvh,52rem); }
+header a[aria-current="page"] { color: var(--primary); text-decoration: underline; text-underline-offset: .3em; }
+li[data-imported="true"] { border-color: var(--primary); outline: 2px solid var(--primary); outline-offset: 3px; }
+.preview-suspended * { animation-play-state: paused !important; }
+.native-shell .library-toast { bottom: calc(5.5rem + env(safe-area-inset-bottom)); }

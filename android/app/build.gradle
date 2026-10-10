@@ -1,0 +1,131 @@
+apply plugin: 'com.android.application'
+
+def releaseKeystoreProperties = new Properties()
+def releaseKeystorePropertiesFile = rootProject.file('keystore.properties')
+
+if (releaseKeystorePropertiesFile.exists()) {
+    releaseKeystorePropertiesFile.withInputStream {
+        releaseKeystoreProperties.load(it)
+    }
+}
+
+def releaseStoreFile =
+    releaseKeystoreProperties.getProperty('storeFile') ?:
+    System.getenv('TINYSURPRISE_RELEASE_STORE_FILE')
+
+def releaseStorePassword =
+    releaseKeystoreProperties.getProperty('storePassword') ?:
+    System.getenv('TINYSURPRISE_RELEASE_STORE_PASSWORD')
+
+def releaseKeyAlias =
+    releaseKeystoreProperties.getProperty('keyAlias') ?:
+    System.getenv('TINYSURPRISE_RELEASE_KEY_ALIAS')
+
+def releaseKeyPassword =
+    releaseKeystoreProperties.getProperty('keyPassword') ?:
+    System.getenv('TINYSURPRISE_RELEASE_KEY_PASSWORD')
+
+def hasReleaseSigning =
+    releaseStoreFile &&
+    releaseStorePassword &&
+    releaseKeyAlias &&
+    releaseKeyPassword
+
+android {
+    namespace = "com.tinysurprise.app"
+    compileSdk = rootProject.ext.compileSdkVersion
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        applicationId "com.tinysurprise.app"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        aaptOptions {
+            // Files and dirs to omit from the packaged assets dir,
+            // modified to accommodate modern web apps.
+            ignoreAssetsPattern = '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
+        }
+    }
+
+    signingConfigs {
+        if (hasReleaseSigning) {
+            release {
+                // keystore.properties contains:
+                // storeFile=tinysurprise-release.jks
+                //
+                // The JKS is stored in the android/ root directory,
+                // so resolve it relative to rootProject.
+                storeFile rootProject.file(releaseStoreFile)
+                storePassword releaseStorePassword
+                keyAlias releaseKeyAlias
+                keyPassword releaseKeyPassword
+
+                enableV1Signing true
+                enableV2Signing true
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+
+            proguardFiles(
+                getDefaultProguardFile('proguard-android.txt'),
+                'proguard-rules.pro'
+            )
+
+            if (hasReleaseSigning) {
+                signingConfig signingConfigs.release
+            }
+        }
+    }
+}
+
+repositories {
+    flatDir {
+        dirs '../capacitor-cordova-android-plugins/src/main/libs', 'libs'
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
+    implementation "androidx.coordinatorlayout:coordinatorlayout:$androidxCoordinatorLayoutVersion"
+    implementation "androidx.core:core-splashscreen:$coreSplashScreenVersion"
+    implementation "androidx.media3:media3-transformer:1.11.0"
+    implementation "androidx.media3:media3-effect:1.11.0"
+    implementation "androidx.media3:media3-common:1.11.0"
+
+    implementation project(':capacitor-android')
+
+    testImplementation "junit:junit:$junitVersion"
+    androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$androidxEspressoCoreVersion"
+
+    implementation project(':capacitor-cordova-android-plugins')
+}
+
+apply from: 'capacitor.build.gradle'
+
+try {
+    def servicesJSON = file('google-services.json')
+
+    if (servicesJSON.text) {
+        apply plugin: 'com.google.gms.google-services'
+    }
+} catch(Exception e) {
+    logger.info(
+        "google-services.json not found, google-services plugin not applied. " +
+        "Push Notifications won't work"
+    )
+}

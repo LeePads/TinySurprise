@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Android 7.0-8.1 cannot safely distinguish cloud backup from D2D here.
+    Exclude all app data on those legacy versions; API 28+ uses the qualified
+    rule below to permit D2D only.
+-->
+<full-backup-content>
+    <exclude domain="root" path="." />
+</full-backup-content>

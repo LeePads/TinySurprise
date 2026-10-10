@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Tiny Surprise</string>
+    <string name="title_activity_main">Tiny Surprise</string>
+    <string name="package_name">com.tinysurprise.app</string>
+    <string name="custom_url_scheme">com.tinysurprise.app</string>
+</resources>
