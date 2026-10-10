@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 import { Button } from './ui/button'
 import { RecipientPreview } from './recipient-preview'
+import { SiteMusicPreviewSlot } from './site-music'
 import type { SurpriseData } from '@/lib/types'
 import { TEMPLATES } from '@/lib/config'
 
@@ -14,6 +15,7 @@ export function TemplateDemoShell({ data, children }: { data: SurpriseData; chil
         </Button>
         {TEMPLATES[data.template]?.isAvailable && <Button asChild className="min-h-12"><Link href={`/create/${data.template}`}>Make my own</Link></Button>}
       </header>
+      <SiteMusicPreviewSlot />
       <div className="recipient-preview-viewport min-h-0 flex-1 overflow-auto pb-[env(safe-area-inset-bottom)]">
         <div className="flex min-h-full flex-col [&>*]:min-h-0 [&>*]:flex-1">
           <RecipientPreview data={data} fillHeight presentationMode="viewport">{children}</RecipientPreview>

@@ -1400,6 +1400,20 @@ body.heart-completion-open {
   white-space: normal;
   overflow-wrap: anywhere;
 }
+/* Music occupies a row below navigation instead of a viewport corner.
+   The header owns the top inset; side cutouts remain clear in landscape.
+   Empty underlying slots collapse while fullscreen owns the control. */
+.preview-music-slot {
+  display: flex;
+  flex: 0 0 auto;
+  min-inline-size: 0;
+  justify-content: flex-end;
+  padding: 0.5rem max(1rem, env(safe-area-inset-right, 0px))
+    0.5rem max(1rem, env(safe-area-inset-left, 0px));
+}
+.preview-music-slot:empty {
+  display: none;
+}
 .recipient-preview-viewport {
   container-name: recipient-preview;
   container-type: size;

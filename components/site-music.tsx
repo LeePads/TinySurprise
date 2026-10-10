@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useId, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { usePathname } from "next/navigation";
 import { Music2, Pause, Volume2 } from "lucide-react";
 import { isNativePlatform } from "@/lib/platform";
@@ -12,6 +13,20 @@ import {
 
 const MUSIC_PREFERENCE_KEY = "tinysurprise-site-music";
 const SITE_MUSIC_VOLUME = 0.28;
+const PREVIEW_MUSIC_SLOT_EVENT = "tiny-preview-music-slot-change";
+
+/** Reserve a normal-flow row below preview navigation for the existing player. */
+export function SiteMusicPreviewSlot({ fullscreen = false }: { fullscreen?: boolean }) {
+  const slotRef = useRef<HTMLDivElement | null>(null);
+  const attachSlot = useCallback((node: HTMLDivElement | null) => {
+    slotRef.current?.removeAttribute("data-site-music-slot");
+    slotRef.current = node;
+    node?.setAttribute("data-site-music-slot", fullscreen ? "fullscreen" : "template");
+    window.dispatchEvent(new Event(PREVIEW_MUSIC_SLOT_EVENT));
+  }, [fullscreen]);
+
+  return <div ref={attachSlot} className="preview-music-slot" />;
+}
 
 export function SiteMusicHeaderControl() {
   const [playing, setPlaying] = useState(false);
@@ -61,6 +76,19 @@ export function SiteMusic() {
   const [playing, setPlaying] = useState(false);
   const [blocked, setBlocked] = useState(false);
   const [native, setNative] = useState(false);
+  const [previewSlot, setPreviewSlot] = useState<HTMLElement | null>(null);
+
+  useEffect(() => {
+    // Fullscreen takes precedence over the template page underneath. Slot refs
+    // notify on mount/removal; the audio element stays mounted in this player.
+    const syncSlot = () => setPreviewSlot(
+      document.querySelector<HTMLElement>('[data-site-music-slot="fullscreen"]')
+      || document.querySelector<HTMLElement>('[data-site-music-slot="template"]'),
+    );
+    window.addEventListener(PREVIEW_MUSIC_SLOT_EVENT, syncSlot);
+    syncSlot();
+    return () => window.removeEventListener(PREVIEW_MUSIC_SLOT_EVENT, syncSlot);
+  }, []);
   const inBuilder = pathname.startsWith("/create/");
   const inTemplateDemo = pathname.startsWith("/s/");
   // The Android bottom nav (Home/Templates/My Surprises/Settings) occupies
@@ -208,13 +236,38 @@ export function SiteMusic() {
   }, [playing, blocked]);
 
   const label = blocked || !playing ? "Play music" : "Pause music";
-  const controlVisibility = native
+  const controlVisibility = inTemplateDemo
+    ? "hidden"
+    : native
     ? inBuilder
       ? "hidden sm:flex"
       : "flex"
     : inBuilder
       ? "hidden"
       : "flex md:hidden";
+  const controlPosition = previewSlot
+    ? "relative flex min-w-0 max-w-full whitespace-normal"
+    : `fixed right-3 z-[70] ${controlVisibility} whitespace-nowrap sm:right-6 lg:right-8 ${inBuilder ? "bottom-[calc(5.7rem+env(safe-area-inset-bottom))]" : clearsBottomNav ? "bottom-[calc(4.75rem+env(safe-area-inset-bottom))]" : "bottom-[calc(1rem+env(safe-area-inset-bottom))] sm:bottom-6 lg:bottom-8"}`;
+  const control = (
+    <button
+      type="button"
+      onClick={toggle}
+      aria-pressed={playing}
+      aria-label={label}
+      className={`site-music-control ${controlPosition} min-h-12 items-center gap-2 rounded-full border border-border/70 bg-card/95 px-3 text-xs font-semibold shadow-[var(--shadow-elevated)] backdrop-blur-xl transition hover:-translate-y-0.5 hover:border-primary/30 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/20`}
+    >
+      <span aria-hidden="true" className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-primary/10">
+        {blocked ? (
+          <Music2 className="h-4 w-4 text-primary" />
+        ) : playing ? (
+          <Pause className="h-4 w-4 fill-current text-primary" />
+        ) : (
+          <Volume2 className="h-4 w-4 text-primary" />
+        )}
+      </span>
+      <span className="min-w-0 [overflow-wrap:anywhere]">{label}</span>
+    </button>
+  );
   return (
     <>
       <audio
@@ -230,24 +283,7 @@ export function SiteMusic() {
           setBlocked(true);
         }}
       />
-      <button
-        type="button"
-        onClick={toggle}
-        aria-pressed={playing}
-        aria-label={label}
-        className={`site-music-control fixed right-3 z-[70] ${controlVisibility} min-h-12 items-center gap-2 whitespace-nowrap rounded-full border border-border/70 bg-card/95 px-3 text-xs font-semibold shadow-[var(--shadow-elevated)] backdrop-blur-xl transition hover:-translate-y-0.5 hover:border-primary/30 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/20 sm:right-6 lg:right-8 ${inTemplateDemo ? "bottom-auto top-[calc(.75rem+env(safe-area-inset-top))]" : inBuilder ? "bottom-[calc(5.7rem+env(safe-area-inset-bottom))]" : clearsBottomNav ? "bottom-[calc(4.75rem+env(safe-area-inset-bottom))]" : "bottom-[calc(1rem+env(safe-area-inset-bottom))] sm:bottom-6 lg:bottom-8"}`}
-      >
-        <span className="grid h-7 w-7 place-items-center rounded-full bg-primary/10">
-          {blocked ? (
-            <Music2 className="h-4 w-4 text-primary" />
-          ) : playing ? (
-            <Pause className="h-4 w-4 fill-current text-primary" />
-          ) : (
-            <Volume2 className="h-4 w-4 text-primary" />
-          )}
-        </span>
-        <span>{label}</span>
-      </button>
+      {previewSlot ? createPortal(control, previewSlot) : control}
     </>
   );
 }

@@ -5,6 +5,7 @@ import { Gift, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { LandingResourceLinks } from "@/components/landing-resource-links";
 import { TEMPLATE_CARD_ART } from "@/lib/design-assets";
 
 export function LandingHero() {
@@ -35,14 +36,15 @@ export function LandingHero() {
             initial={reduce ? false : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.18 }}
-            className="mt-8 flex flex-col gap-3 sm:flex-row"
+            className="mt-8 flex flex-wrap items-center gap-3"
           >
-            <Button asChild size="lg" className="min-h-12 px-6 shadow-warm">
+            <Button asChild size="lg" className="min-h-12 w-full px-6 shadow-warm sm:w-auto">
               <Link href="/templates">
                 <Gift className="mr-2 h-5 w-5" />
                 Create a surprise
               </Link>
             </Button>
+            <LandingResourceLinks />
           </motion.div>
           <p className="mt-5 flex items-start gap-2 text-sm text-muted-foreground">
             <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-primary" />

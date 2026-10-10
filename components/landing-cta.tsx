@@ -1,30 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import type { SVGProps } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, Heart, Smartphone, Sparkles } from "lucide-react";
+import { ArrowRight, Heart, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { SITE_LINKS } from "@/lib/site-links";
-
-function GitHubIcon(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      {...props}
-    >
-      <path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 19 4.77 5.07 5.07 0 0 0 18.91 1S17.73.65 15 2.48a13.38 13.38 0 0 0-7 0C5.27.65 4.09 1 4.09 1A5.07 5.07 0 0 0 4 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 8 18.13V22" />
-    </svg>
-  );
-}
+import { LandingResourceLinks } from "@/components/landing-resource-links";
 
 export function LandingCTA() {
   const reduceMotion = useReducedMotion();
@@ -66,19 +46,8 @@ export function LandingCTA() {
             Create a surprise <ArrowRight className="ml-2 h-4 w-4" />
           </Link>
         </Button>
-        <div className="landing-resource-links relative mx-auto mt-7 grid max-w-xl gap-3 sm:grid-cols-2">
-          {[
-            { ...SITE_LINKS.github, Icon: GitHubIcon },
-            { ...SITE_LINKS.android, Icon: Smartphone },
-          ].map(({ label, Icon }) => (
-            <Button key={label} type="button" variant="outline" disabled className="h-auto min-h-12 w-full min-w-0 justify-start gap-3 whitespace-normal px-4 py-3 text-left disabled:opacity-100">
-              <Icon className="size-5 shrink-0" aria-hidden="true" />
-              <span className="flex min-w-0 flex-col gap-1">
-                <span>{label}</span>
-                <span className="text-xs font-normal text-muted-foreground">Coming soon</span>
-              </span>
-            </Button>
-          ))}
+        <div className="relative mx-auto mt-4 flex flex-wrap items-center justify-center gap-x-3 gap-y-2">
+          <LandingResourceLinks compact />
         </div>
       </motion.div>
     </section>

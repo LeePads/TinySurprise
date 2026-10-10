@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowLeft, Monitor, RotateCcw, Smartphone } from "lucide-react";
 import { RecipientPreview } from "./recipient-preview";
+import { SiteMusicPreviewSlot } from "./site-music";
 import { hapticTap } from "@/lib/native/haptics";
 import { enterImmersiveMode, exitImmersiveMode } from "@/lib/native/immersive-mode";
 import { isNativePlatform } from "@/lib/platform";
@@ -170,6 +171,7 @@ export function FullScreenPreview({
             </button>
 
           </header>
+          <SiteMusicPreviewSlot fullscreen />
 
           <div
             className={`recipient-preview-viewport min-h-0 flex-1 overflow-auto ${phoneFramed ? "mx-auto w-full max-w-[430px]" : ""}`}

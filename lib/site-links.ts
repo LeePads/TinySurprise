@@ -1,8 +1,7 @@
-/** Enable these destinations only after the owner confirms public availability. */
+/** Public release destinations shared by the landing page actions. */
 export const SITE_LINKS = {
-  android: { label: 'Download Android App', url: null as string | null },
-  // Future public destination: https://github.com/LeePads/TinySurprise
-  github: { label: 'GitHub', url: null as string | null },
+  android: { label: 'Download Android', url: 'https://github.com/LeePads/TinySurprise/releases/latest' },
+  github: { label: 'GitHub', url: 'https://github.com/LeePads/TinySurprise' },
   projects: [
     { label: 'Caizen', url: 'https://www.caizen.space/' },
     { label: 'CaiTCMS', url: 'https://caitcms.vercel.app/auth/login?next=%2Fdashboard' },
