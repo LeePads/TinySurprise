@@ -2,6 +2,8 @@
 
 **A little more personal than a regular message.**
 
+[**Try TinySurprise**](https://tinysurprise.vercel.app/) | [**Download for Android**](https://github.com/LeePads/TinySurprise/releases/latest)
+
 TinySurprise is a creative app for making interactive surprises for friends, partners, family, or anyone you want to surprise.
 
 Instead of sending a regular message or photo, you can turn your memories, stories, and inside jokes into something people can actually interact with.
